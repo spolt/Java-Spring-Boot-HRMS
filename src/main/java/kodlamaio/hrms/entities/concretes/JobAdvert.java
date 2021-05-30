@@ -28,7 +28,7 @@ public class JobAdvert {
 	private int advertId;
 	
 	@Column(name = "open_positions")
-	private int openPositions;
+	private int openPosition;
 	
 	@Column(name = "created_date")
 	private Date createdDate;
@@ -51,15 +51,18 @@ public class JobAdvert {
 	@Column(name="is_active")
 	private boolean isActive;
 	
-	@ManyToOne
+	@Column(name="description")
+	private String description;
+	
+	@ManyToOne()
 	@JoinColumn(name="city_id")
 	private City city;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name="job_position_id")
 	private JobPosition jobPosition;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name="employer_id")
 	private Employer employer;
 	

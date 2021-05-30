@@ -1,28 +1,25 @@
 package kodlamaio.hrms.entities.concretes;
 
+
+
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Data
+
+
 @Entity
 @Table(name="cities")
-@NoArgsConstructor
-@AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
 public class City {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="city_id")
 	private int cityId;
 	
@@ -31,5 +28,37 @@ public class City {
 	
 	@OneToMany(mappedBy = "city")
 	private List<JobAdvert> jobAdverts;
+	
+	public City() {
+		
+	}
 
+	public City(int cityId, String cityName) {
+		super();
+		this.cityId = cityId;
+		this.cityName = cityName;
+	}
+
+	public int getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+	
+	
+	
+	
+	
+	
+	
 }

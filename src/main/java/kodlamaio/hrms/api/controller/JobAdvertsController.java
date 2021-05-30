@@ -58,9 +58,7 @@ public class JobAdvertsController {
 	@GetMapping("/getByIsOpenAndEmployerId")
 	public DataResult<List<JobAdvert>> getByIsOpenAndEmployerId(@RequestParam boolean isOpen, int id){
 		return this.jobAdvertService.getByIsOpenAndEmployerId(isOpen,id);
-	}
-	
-	
+	}	
 	
 	
 	

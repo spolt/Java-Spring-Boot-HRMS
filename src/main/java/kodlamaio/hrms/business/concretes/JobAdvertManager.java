@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class JobAdvertManager implements JobAdvertService{
 	@Override
 	public DataResult<List<JobAdvert>> getAll() {
 		
-		return new SuccessDataResult<List<JobAdvert>>(this.jobAdvertDao.findAll());
+		return new SuccessDataResult<List<JobAdvert>>(this.jobAdvertDao.findAll(), "İş ilanları listelendi.");
 	}
 
 	@Override
@@ -65,3 +66,4 @@ public class JobAdvertManager implements JobAdvertService{
 	}
 
 }
+
