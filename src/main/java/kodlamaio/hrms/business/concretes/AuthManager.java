@@ -4,31 +4,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.AuthService;
+import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
-import kodlamaio.hrms.business.abstracts.JobSeekerService;
 import kodlamaio.hrms.business.abstracts.UserService;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.utilities.services.MernisCheckService;
+import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Employer;
-import kodlamaio.hrms.entities.concretes.JobSeeker;
+
 
 @Service
 public class AuthManager implements AuthService{
 	
 	private UserService userService;
 	private EmployerService employerService;
-	private JobSeekerService jobseekerService;
+	private CandidateService candidateService;
 	private final MernisCheckService mernisCheckService;
 	private String confirmPassword = "123465";
 	
 	
 	@Autowired
-	public AuthManager(UserService userService, EmployerService employerService, JobSeekerService jobseekerService, MernisCheckService mernisCheckService) {
+	public AuthManager(UserService userService, EmployerService employerService, CandidateService candidateService, MernisCheckService mernisCheckService) {
 		super();
 		this.employerService = employerService;
-		this.jobseekerService = jobseekerService;
+		this.candidateService = candidateService;
 		this.mernisCheckService = mernisCheckService;
 		this.userService = userService;
 	}
@@ -58,34 +59,34 @@ public class AuthManager implements AuthService{
 	}
 	
 	@Override
-	public Result registerJobseeker(JobSeeker jobSeeker) {
+	public Result registerCandidate(Candidate candidate) {
 		
-		if(checkIfNullValueInCandidates(jobSeeker)) {
+		if(checkIfNullValueInCandidates(candidate)) {
 			
 			return new ErrorResult("There is/are some empty space/s in the form");
 			
 		}
 		
-		if (!checkIfExistNationalId(jobSeeker.getTcno())) {
+		if (!checkIfExistNationalId(candidate.getTcno())) {
 			
 			return new ErrorResult("There is a national ID error");
 		}
 		
-		if (!checkIfEmailExist(jobSeeker.getEmail())) {
+		if (!checkIfEmailExist(candidate.getEmail())) {
 			
 			return new ErrorResult("There is an email error.");
 		}
-		if (!mernisCheckService.isMernis(jobSeeker)) {
+		if (!mernisCheckService.isMernis(candidate)) {
 			
 			return new ErrorResult("Error: Mernis failed");
 		}
-		if (!checkIfEqualPasswordAndConfirmPassword(jobSeeker.getPassword(), confirmPassword)) {
+		if (!checkIfEqualPasswordAndConfirmPassword(candidate.getPassword(), confirmPassword)) {
 			
 			return new ErrorResult("passwords not match");
 		}
 		
-		jobseekerService.addJobSeeker(jobSeeker);
-		return new SuccessResult("Candidate " + jobSeeker.getFirstName() + jobSeeker.getLastName() + " registration completed.");
+		candidateService.addCandidate(candidate);
+		return new SuccessResult("Candidate " + candidate.getFirstName() + candidate.getLastName() + " registration completed.");
 	}
 	
 	
@@ -97,7 +98,7 @@ public class AuthManager implements AuthService{
 		return true;
 	}
 
-	private boolean checkIfNullValueInCandidates(JobSeeker jobSeeker) {
+	private boolean checkIfNullValueInCandidates(Candidate candidate) {
 		// TODO Auto-generated method stub
 		return false;
 	}

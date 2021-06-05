@@ -1,9 +1,9 @@
 package kodlamaio.hrms.core.utilities.services;
 
-import kodlamaio.hrms.entities.concretes.JobSeeker;
+import kodlamaio.hrms.entities.concretes.Candidate;
 
 public interface MernisCheckService {
 	
-	boolean isMernis(JobSeeker jobSeeker);
+	boolean isMernis(Candidate candidate);
 
 }
