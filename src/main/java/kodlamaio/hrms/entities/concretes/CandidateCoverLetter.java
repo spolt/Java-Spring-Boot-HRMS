@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,12 +27,16 @@ public class CandidateCoverLetter {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "cover_letter")
+	@NotNull
+	@NotBlank
+	@Column(name = "cover_letter", columnDefinition="TEXT")
 	private String coverLetter;
 	
 	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
+	@NotNull
+	@NotBlank
+	@JoinColumn(name = "cv_id")
+	private CurriculumVitae curriculumVitae;
 
 	
 }

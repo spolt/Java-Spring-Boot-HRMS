@@ -8,6 +8,4 @@ import kodlamaio.hrms.entities.concretes.CandidateLink;
 
 public interface CandidateLinkDao extends JpaRepository<CandidateLink, Integer>{
 	
-	List<CandidateLink> getAllByCandidateId(int candidateId);
-
 }

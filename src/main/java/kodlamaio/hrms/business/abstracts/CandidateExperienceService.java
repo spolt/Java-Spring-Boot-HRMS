@@ -12,6 +12,5 @@ public interface CandidateExperienceService {
 	Result update(CandidateExperience candidateExperience);
 	
 	DataResult<List<CandidateExperience>> getAllSorted();
-	DataResult<List<CandidateExperience>> getAllByCandidateIdOrderByFinishDate(int candidateId);
 
 }

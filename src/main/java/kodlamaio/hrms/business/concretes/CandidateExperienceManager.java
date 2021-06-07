@@ -44,10 +44,6 @@ public class CandidateExperienceManager implements CandidateExperienceService{
 		return new SuccessDataResult<List<CandidateExperience>>(this.candidateExperienceDao.findAll(sort));
 	}
 
-	@Override
-	public DataResult<List<CandidateExperience>> getAllByCandidateIdOrderByFinishDate(int candidateId) {
-		
-		return new SuccessDataResult<List<CandidateExperience>>(this.candidateExperienceDao.getAllByCandidateIdOrderByFinishDate(candidateId));
-	}
+	
 
 }

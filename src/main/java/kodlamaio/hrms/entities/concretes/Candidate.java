@@ -4,16 +4,14 @@ package kodlamaio.hrms.entities.concretes;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +25,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="candidates")
 @PrimaryKeyJoinColumn(name = "user_id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculumVitaes"})
 public class Candidate extends User{
 	
 	
@@ -43,31 +42,7 @@ public class Candidate extends User{
 	private Date birthDate;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "candidate", cascade = {CascadeType.ALL})
-	private List<CandidateCoverLetter> candidateCoverLetters;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "candidate", cascade = {CascadeType.ALL})
-	private List<CandidateLanguages> candidateLanguages;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "candidate", cascade =  {CascadeType.ALL})
-	private List<CandidateEducation> candidateEducation;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "candidate", cascade = {CascadeType.ALL})
-	private List<CandidateExperience> candidateExperience;
-	
-	@JsonIgnore
-	@OneToOne(mappedBy = "candidate", fetch = FetchType.LAZY)
-	private CandidateImage candidateImage;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "candidate", cascade = {CascadeType.ALL})
-	private List<CandidateSkill> candidateSkills;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "candidate", cascade = {CascadeType.ALL})
-	private List<CandidateLink> candidateLinks;
+	@OneToMany(mappedBy = "candidate")
+	private List<CurriculumVitae> curriculumVitaes;
 
 }

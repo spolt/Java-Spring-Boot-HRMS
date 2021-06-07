@@ -13,6 +13,5 @@ public interface CandidateEducationService {
 	
 	
 	DataResult<List<CandidateEducation>> getAllSorted();
-	DataResult<List<CandidateEducation>> getAllByCandidateIdOrderByFinishYear(int candidateId);
 
 }

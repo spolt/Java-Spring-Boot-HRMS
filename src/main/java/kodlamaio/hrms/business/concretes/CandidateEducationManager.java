@@ -44,10 +44,4 @@ public class CandidateEducationManager implements CandidateEducationService {
 		return new SuccessDataResult<List<CandidateEducation>>(this.candidateEducationDao.findAll(sort));
 	}
 
-	@Override
-	public DataResult<List<CandidateEducation>> getAllByCandidateIdOrderByFinishYear(int candidateId) {
-		
-		return new SuccessDataResult<List<CandidateEducation>>(this.candidateEducationDao.getAllByCandidateIdOrderByFinishYear(candidateId));
-	}
-
 }

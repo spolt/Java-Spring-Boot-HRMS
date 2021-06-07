@@ -55,7 +55,7 @@ public class CandidateExperience {
 	private Date finishDate;
 	
 	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
+	@JoinColumn(name = "cv_id")
+	private CurriculumVitae curriculumVitae;
 
 }

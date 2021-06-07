@@ -30,7 +30,7 @@ public class CandidateLink {
 	private String linkUrl;
 	
 	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
+	@JoinColumn(name = "cv_id")
+	private CurriculumVitae curriculumVitae;
 
 }

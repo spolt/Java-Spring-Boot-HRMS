@@ -27,14 +27,14 @@ public class CandidateEducation {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "school_names")
+	@Column(name = "school_name")
 	@NotNull
 	@NotBlank
 	private String schoolName;
 	
 	@NotNull
 	@NotBlank
-	@Column(name = "department_names")
+	@Column(name = "department_name")
 	private String departmentName;
 	
 	@NotNull
@@ -46,7 +46,7 @@ public class CandidateEducation {
 	private int finishYear;
 	
 	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
+	@JoinColumn(name = "cv_id")
+	private CurriculumVitae curriculumVitae;
 
 }

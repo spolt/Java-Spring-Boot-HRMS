@@ -42,7 +42,7 @@ public class CandidateLanguages {
 	private int languageLevel;
 	
 	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
+	@JoinColumn(name = "cv_id")
+	private CurriculumVitae curriculumVitae;
 
 }

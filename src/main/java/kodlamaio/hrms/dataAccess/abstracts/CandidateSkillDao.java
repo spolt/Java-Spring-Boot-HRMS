@@ -8,6 +8,5 @@ import kodlamaio.hrms.entities.concretes.CandidateSkill;
 
 public interface CandidateSkillDao extends JpaRepository<CandidateSkill, Integer>{
 	
-	List<CandidateSkill> getAllByCandidateId(int candidateId);
-
+	
 }

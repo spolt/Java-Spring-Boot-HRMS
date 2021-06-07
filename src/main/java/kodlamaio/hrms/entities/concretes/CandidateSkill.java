@@ -11,6 +11,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "candidate_skills")
 public class CandidateSkill {
@@ -25,11 +32,11 @@ public class CandidateSkill {
 	@NotBlank
 	private String skillName;
 	
-	@Column(name = "skill_description")
+	@Column(name = "skill_description", columnDefinition = "TEXT")
 	private String skillDescription;
 	
 	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
+	@JoinColumn(name = "cv_id")
+	private CurriculumVitae curriculumVitae;
 
 }

@@ -12,6 +12,5 @@ public interface CandidateSkillService {
 	Result update(CandidateSkill candidateSkill);
 	
 	DataResult<List<CandidateSkill>> getAll();
-	DataResult<List<CandidateSkill>> getAllByCandidateId(int candidateId);
 
 }
