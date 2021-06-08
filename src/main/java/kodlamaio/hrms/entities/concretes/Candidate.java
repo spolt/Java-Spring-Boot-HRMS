@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -44,5 +45,9 @@ public class Candidate extends User{
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
 	private List<CurriculumVitae> curriculumVitaes;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "candidate")
+	private CvImage image;
 
 }

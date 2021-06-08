@@ -7,12 +7,15 @@ import kodlamaio.hrms.business.abstracts.AuthService;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.business.abstracts.UserService;
+import kodlamaio.hrms.business.abstracts.VerificationEmployerService;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.utilities.services.MernisCheckService;
+import kodlamaio.hrms.core.verifications.VerificationGeneratorService;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.VerificationEmployer;
 
 
 @Service
@@ -21,16 +24,21 @@ public class AuthManager implements AuthService{
 	private UserService userService;
 	private EmployerService employerService;
 	private CandidateService candidateService;
+	private VerificationEmployerService verificationEmployerService;
+	private VerificationGeneratorService verificationGeneratorService;
 	private final MernisCheckService mernisCheckService;
 	private String confirmPassword = "123465";
 	
 	
 	@Autowired
-	public AuthManager(UserService userService, EmployerService employerService, CandidateService candidateService, MernisCheckService mernisCheckService) {
+	public AuthManager(UserService userService, EmployerService employerService, CandidateService candidateService,
+			MernisCheckService mernisCheckService, VerificationEmployerService verificationEmployerService,VerificationGeneratorService verificationGeneratorService) {
 		super();
 		this.employerService = employerService;
 		this.candidateService = candidateService;
 		this.mernisCheckService = mernisCheckService;
+		this.verificationEmployerService = verificationEmployerService;
+		this.verificationGeneratorService = verificationGeneratorService;
 		this.userService = userService;
 	}
 
@@ -43,7 +51,7 @@ public class AuthManager implements AuthService{
 		}
 		if (!checkIfEqualEmailAndDomain(employer.getEmail(), employer.getWebsite())) {
 			
-			return new ErrorResult("is not valid");
+			return new ErrorResult("Domain is not valid");
 		}
 		if (!checkIfEmailExist(employer.getEmail())) {
 			
@@ -54,10 +62,15 @@ public class AuthManager implements AuthService{
 			return new ErrorResult("passwords not match");
 		}
 		
+		
 		employerService.addEmployer(employer);
+		String code = verificationGeneratorService.sendCode();
+		verificationCodeIsGenerated(code, employer.getId(), employer.getEmail());
 		return new SuccessResult("Employer " + employer.getCompanyName() + " is added");
 	}
 	
+	
+
 	@Override
 	public Result registerCandidate(Candidate candidate) {
 		
@@ -133,6 +146,14 @@ public class AuthManager implements AuthService{
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	private void verificationCodeIsGenerated(String code, int id, String email) {
+		VerificationEmployer verificationEmployer = new VerificationEmployer(id,null, false, code, id);
+		this.verificationEmployerService.add(verificationEmployer);
+		System.out.println("verification code sent: " + email);
+	}
+	
+	
 
 
 }

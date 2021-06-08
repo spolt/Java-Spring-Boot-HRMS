@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -37,8 +38,8 @@ public class CurriculumVitae {
 	@Column(name = "cv_name")
 	private String cvName;
 	
-	@Column(name = "image_url")
-	private String imageUrl;
+	@Column(name = "created_date", columnDefinition = "Date defult CURRENT_DATE")
+	private LocalDate createdDate = LocalDate.now();
 	
 	@ManyToOne()
 	@JoinColumn(name = "candidate_id")
