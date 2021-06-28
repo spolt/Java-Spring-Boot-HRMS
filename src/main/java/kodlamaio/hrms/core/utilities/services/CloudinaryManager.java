@@ -20,7 +20,7 @@ public class CloudinaryManager implements CloudinaryService{
 	
 	public CloudinaryManager() {
 		
-		this.cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "dqgqobaq8","api_key", "559339541974452", "api_secret", "eE1xn_x35Jx1rEIbnZafbIdvnRM"));
+		this.cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "---","api_key", "---", "api_secret", "---"));
 	}
 
 	@SuppressWarnings("rawtypes")
